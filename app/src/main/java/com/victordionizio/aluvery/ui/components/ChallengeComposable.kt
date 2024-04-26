@@ -43,9 +43,6 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.victordionizio.aluvery.R
-import com.victordionizio.aluvery.ui.theme.Purple200
-import com.victordionizio.aluvery.ui.theme.Purple500
-import com.victordionizio.aluvery.ui.theme.Teal200
 
 @Preview(showBackground = true)
 @Composable
@@ -100,7 +97,8 @@ fun ChallengeComposable() {
                     .background(
                         brush = Brush.verticalGradient(
                             listOf(
-                                Purple500, Purple200
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary
                             )
                         )
                     )
@@ -117,7 +115,8 @@ fun ChallengeComposable() {
                             BorderStroke(
                                 2.dp, brush = Brush.verticalGradient(
                                     listOf(
-                                        Purple200, Purple500
+                                        MaterialTheme.colorScheme.primary,
+                                        MaterialTheme.colorScheme.secondary
                                     )
                                 )
                             ), CircleShape
@@ -163,7 +162,8 @@ fun ChallangeProductItemScroll() {
                     .background(
                         brush = Brush.horizontalGradient(
                             colors = listOf(            // Box em gradiete
-                                Purple500, Purple200
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary
                             )
                         )
                     )

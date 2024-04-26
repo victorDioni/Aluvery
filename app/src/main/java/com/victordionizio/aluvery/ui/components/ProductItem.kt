@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,13 +27,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.victordionizio.aluvery.R
 import com.victordionizio.aluvery.extensions.toBrazilianCurrency
 import com.victordionizio.aluvery.model.Product
-import com.victordionizio.aluvery.ui.theme.Purple200
-import com.victordionizio.aluvery.ui.theme.Purple500
 import java.math.BigDecimal
 
 @Composable
@@ -53,14 +53,16 @@ fun ProductItem(product: Product) {
                     .background(
                         brush = Brush.horizontalGradient(
                             colors = listOf(            // Box em gradiete
-                                Purple500, Purple200
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary
                             )
                         )
                     )
                     .fillMaxWidth()
             ) {
                 Image(
-                    painter = painterResource(id = product.image),
+                    // TODO: ajustar imagem do produto
+                    painter = painterResource(id = R.drawable.placeholder),
                     contentDescription = "Imagem teste",
                     modifier = Modifier
                         .size(imageSize)
@@ -95,11 +97,11 @@ fun ProductItem(product: Product) {
 @Preview(showBackground = true)
 @Composable
 private fun ProductItemPreview() {
-    ProductItem(
-        Product(
-            name = "teste",
-            price = BigDecimal("99.99"),
-            image = R.drawable.placeholder
-        )
-    )
+            ProductItem(
+                Product(
+                    name = LoremIpsum(50).values.first(),
+                    price = BigDecimal("14.99")
+                )
+            )
+
 }
