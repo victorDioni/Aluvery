@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.victordionizio.aluvery.R
 import com.victordionizio.aluvery.extensions.toBrazilianCurrency
 import com.victordionizio.aluvery.model.Product
@@ -60,16 +61,17 @@ fun ProductItem(product: Product) {
                     )
                     .fillMaxWidth()
             ) {
-                Image(
+                AsyncImage(
                     // TODO: ajustar imagem do produto
-                    painter = painterResource(id = R.drawable.placeholder),
+                    model = product.image,
                     contentDescription = "Imagem teste",
                     modifier = Modifier
                         .size(imageSize)
                         .offset(y = imageSize / 2)
                         .clip(shape = CircleShape) // Deixando a imagem em circulo
                         .align(Alignment.BottomCenter),
-                    contentScale = ContentScale.Crop // Deixa o conteudo da imagem nao passar do limite do nosso container(box)
+                    contentScale = ContentScale.Crop, // Deixa o conteudo da imagem nao passar do limite do nosso container(box)
+                    placeholder = painterResource(id = R.drawable.placeholder)// Essa é a imagem que será apresentada enquanto a imagem passada na chamada do objeto produto nao for carregada
 
                 )
             }
