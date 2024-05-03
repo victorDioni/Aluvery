@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,21 +24,26 @@ import com.victordionizio.aluvery.ui.theme.AluveryTheme
 fun HomeScreen(
     sections: Map<String, List<Product>>
 ){
-    LazyColumn(
-        modifier =
-        Modifier
-            .fillMaxSize()
-            .padding(vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        for (section in sections) {
-            val title = section.key
-            val products = section.value
-            item {
-                ProductSection(
-                    title = title,
-                    products = products
-                )
+    Column {                            // Expressao lambda
+        OutlinedTextField(value = "Produtos", onValueChange = {newValue ->
+
+        })
+        LazyColumn(
+            modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            for (section in sections) {
+                val title = section.key
+                val products = section.value
+                item {
+                    ProductSection(
+                        title = title,
+                        products = products
+                    )
+                }
             }
         }
     }
