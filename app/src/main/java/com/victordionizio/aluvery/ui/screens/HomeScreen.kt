@@ -9,8 +9,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,7 +49,16 @@ fun HomeScreen(
                     end = 16.dp
                 )
                 .fillMaxWidth(),
-            shape = RoundedCornerShape(100)
+            shape = RoundedCornerShape(100),
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Search, contentDescription = "Icone de busca")
+            },
+            label = {
+                Text(text = "Produto")
+            },
+            placeholder = {
+                Text(text = "O que você procura?g")
+            }
         )
         LazyColumn(
             modifier =
