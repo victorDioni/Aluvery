@@ -2,6 +2,7 @@ package com.victordionizio.aluvery.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -46,11 +47,7 @@ fun HomeScreen(
                 text = newValue
             },
             modifier = Modifier
-                .padding(
-                    start = 16.dp,
-                    top = 16.dp,
-                    end = 16.dp
-                )
+                .padding(16.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(100),
             leadingIcon = {
@@ -66,12 +63,14 @@ fun HomeScreen(
         LazyColumn(
             modifier =
             Modifier
-                .fillMaxSize()
-                .padding(vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .fillMaxSize(),
+            contentPadding = PaddingValues(4.dp)
         ) {
             items(sampleProducts){ p ->
-                CardProductItem(product = p)
+                CardProductItem(
+                    product = p,
+                    Modifier.padding(16.dp)
+                )
             }
 //            for (section in sections) {
 //                val title = section.key

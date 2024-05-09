@@ -22,10 +22,11 @@ import com.victordionizio.aluvery.ui.theme.AluveryTheme
 
 @Composable
 fun CardProductItem(
-    product: Product
+    product: Product,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        Modifier
+        modifier
             .fillMaxWidth()
             .heightIn(150.dp)
     ) {

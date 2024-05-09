@@ -24,9 +24,10 @@ import com.victordionizio.aluvery.ui.theme.AluveryTheme
 @Composable
 fun ProductSection(
     title: String,
-    products: List<Product>
+    products: List<Product>,
+    modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(modifier) {
         Text(
             text = title,
             modifier = Modifier.padding(
@@ -45,7 +46,7 @@ fun ProductSection(
                 .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(products){p ->
+            items(products) { p ->
                 ProductItem(product = p)
             }
             // Outra maneira de exibir os produtos

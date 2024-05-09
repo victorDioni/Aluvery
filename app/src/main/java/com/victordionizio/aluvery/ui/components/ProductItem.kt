@@ -37,13 +37,14 @@ import com.victordionizio.aluvery.model.Product
 import java.math.BigDecimal
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(product: Product, modifier: Modifier = Modifier) {
     Surface(
+        modifier,
         shape = RoundedCornerShape(15.dp),
         shadowElevation = 4.dp
     ) {
         Column(
-            modifier = Modifier
+            modifier
                 .heightIn(250.dp) // heightIn - valor minimo da altura do column
                 .width(200.dp)
         ) {
@@ -99,11 +100,11 @@ fun ProductItem(product: Product) {
 @Preview(showBackground = true)
 @Composable
 private fun ProductItemPreview() {
-            ProductItem(
-                Product(
-                    name = LoremIpsum(50).values.first(),
-                    price = BigDecimal("14.99")
-                )
-            )
+    ProductItem(
+        Product(
+            name = LoremIpsum(50).values.first(),
+            price = BigDecimal("14.99")
+        )
+    )
 
 }
