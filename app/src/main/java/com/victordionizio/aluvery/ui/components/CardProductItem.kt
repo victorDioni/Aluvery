@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.victordionizio.aluvery.R
@@ -19,6 +20,7 @@ import com.victordionizio.aluvery.extensions.toBrazilianCurrency
 import com.victordionizio.aluvery.model.Product
 import com.victordionizio.aluvery.sampladata.sampleProducts
 import com.victordionizio.aluvery.ui.theme.AluveryTheme
+import java.math.BigDecimal
 
 @Composable
 fun CardProductItem(
@@ -53,12 +55,14 @@ fun CardProductItem(
                     text = product.price.toBrazilianCurrency()
                 )
             }
-            // TODO: adicionar descrição do produto
-            // Text(
-            //     text = product.description,
-            //     Modifier
-            //         .padding(16.dp)
-            // )
+            product.description?.let {
+                Text(
+                    text = product.description,
+                    Modifier
+                        .padding(16.dp)
+                )
+            }
+
         }
 
     }
@@ -70,8 +74,28 @@ private fun CardProductItemPreview() {
     AluveryTheme {
         Surface {
             CardProductItem(
-                product = sampleProducts.random(),
+                product = Product(
+                    name = "teste",
+                    price = BigDecimal("9,99")
+                ),
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun CardProductItemWithDescriptionPreview() {
+    AluveryTheme {
+        Surface {
+            CardProductItem(
+                product = Product(
+                    name = "teste",
+                    price = BigDecimal("9.99"),
+                    description = LoremIpsum(50).values.first()
+                )
+            )
+        }
+    }
+
 }
