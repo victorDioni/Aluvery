@@ -37,10 +37,11 @@ import com.victordionizio.aluvery.ui.theme.AluveryTheme
 @Composable
 fun HomeScreen(
     sections: Map<String, List<Product>>,
-    searchText : String = ""
+    searchText: String = ""
 ) {
     Column {
         var text by remember { mutableStateOf(searchText) }
+
         // Expressao lambda
         OutlinedTextField(
             value = text,
@@ -58,9 +59,25 @@ fun HomeScreen(
                 Text(text = "Produto")
             },
             placeholder = {
-                Text(text = "O que você procura?g")
+                Text(text = "O que você procura?")
             }
         )
+
+        val searchedProducts = remember(text) {
+            if(text.isNotBlank()) {
+                sampleProducts.filter { product ->
+                    product.name.contains(
+                        text,
+                        ignoreCase = true,
+                    ) ||
+                            product.description?.contains(
+                                text,
+                                ignoreCase = true,
+                            ) ?: false
+                }
+            } else emptyList()
+        }
+
         LazyColumn(
             modifier =
             Modifier
@@ -81,7 +98,7 @@ fun HomeScreen(
                 }
             } else {
                 //Apresenta lista de produtos
-                items(sampleProducts) { p ->
+                items(searchedProducts) { p ->
                     CardProductItem(
                         product = p,
                         Modifier.padding(16.dp)
@@ -107,7 +124,7 @@ fun HomeScreenPreview() {
 fun HomeScreenWithSearchTextPreview() {
     AluveryTheme {
         Surface {
-            HomeScreen(sampleSections, searchText = "a")
+            HomeScreen(sampleSections, searchText = "u")
         }
     }
 }
