@@ -36,10 +36,11 @@ import com.victordionizio.aluvery.ui.theme.AluveryTheme
 
 @Composable
 fun HomeScreen(
-    sections: Map<String, List<Product>>
+    sections: Map<String, List<Product>>,
+    searchText : String = ""
 ) {
     Column {
-        var text by remember { mutableStateOf("") }
+        var text by remember { mutableStateOf(searchText) }
         // Expressao lambda
         OutlinedTextField(
             value = text,
@@ -66,22 +67,27 @@ fun HomeScreen(
                 .fillMaxSize(),
             contentPadding = PaddingValues(4.dp)
         ) {
-            items(sampleProducts){ p ->
-                CardProductItem(
-                    product = p,
-                    Modifier.padding(16.dp)
-                )
+            if (text.isBlank()) {
+                //Apresentar secao com os produtos
+                for (section in sections) {
+                    val title = section.key
+                    val products = section.value
+                    item {
+                        ProductSection(
+                            title = title,
+                            products = products
+                        )
+                    }
+                }
+            } else {
+                //Apresenta lista de produtos
+                items(sampleProducts) { p ->
+                    CardProductItem(
+                        product = p,
+                        Modifier.padding(16.dp)
+                    )
+                }
             }
-//            for (section in sections) {
-//                val title = section.key
-//                val products = section.value
-//                item {
-//                    ProductSection(
-//                        title = title,
-//                        products = products
-//                    )
-//                }
-//            }
         }
     }
 }
@@ -92,6 +98,16 @@ fun HomeScreenPreview() {
     AluveryTheme {
         Surface {
             HomeScreen(sampleSections)
+        }
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun HomeScreenWithSearchTextPreview() {
+    AluveryTheme {
+        Surface {
+            HomeScreen(sampleSections, searchText = "a")
         }
     }
 }
