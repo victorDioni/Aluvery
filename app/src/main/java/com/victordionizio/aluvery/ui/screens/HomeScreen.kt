@@ -31,6 +31,7 @@ import com.victordionizio.aluvery.sampladata.sampleProducts
 import com.victordionizio.aluvery.sampladata.sampleSections
 import com.victordionizio.aluvery.ui.components.CardProductItem
 import com.victordionizio.aluvery.ui.components.ProductSection
+import com.victordionizio.aluvery.ui.components.SearchTextField
 import com.victordionizio.aluvery.ui.theme.AluveryTheme
 
 
@@ -40,31 +41,18 @@ fun HomeScreen(
     searchText: String = ""
 ) {
     Column {
-        var text by remember { mutableStateOf(searchText) }
+        var text by remember {
+            mutableStateOf(searchText)
+        }
 
-        // Expressao lambda
-        OutlinedTextField(
-            value = text,
-            onValueChange = { newValue ->
-                text = newValue
-            },
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(100),
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Search, contentDescription = "Icone de busca")
-            },
-            label = {
-                Text(text = "Produto")
-            },
-            placeholder = {
-                Text(text = "O que você procura?")
-            }
-        )
+        SearchTextField(
+            searchText = text,
+            onSearchChange = {
+            text = it
+        })
 
         val searchedProducts = remember(text) {
-            if(text.isNotBlank()) {
+            if (text.isNotBlank()) {
                 sampleProducts.filter { product ->
                     product.name.contains(
                         text,
