@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.victordionizio.aluvery.ui.theme.AluveryTheme
 
+//SearchTextField - Componente responsavel por atualizar o estado do text
+
 @Composable
 fun SearchTextField(
     searchText: String,
